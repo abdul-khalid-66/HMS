@@ -135,7 +135,7 @@
             </li>
             <!-- // END user -->
           </ul>
-          <a href="login.html" class="navbar-btn btn btn-primary">Log In</a>
+          <a href="login.html" class="navbar-btn btn btn-primary">Log Ins</a>
         </div>
       </div>
       <!-- /.navbar-collapse -->
