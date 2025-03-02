@@ -138,8 +138,7 @@
           <a href="login.html" class="navbar-btn btn btn-primary">Log In</a>
         </div>
       </div>
-
-      <!-- /.navbar-collapsde -->
+      <!-- /.navbar-collapse -->
 
     </div>
   </div>
