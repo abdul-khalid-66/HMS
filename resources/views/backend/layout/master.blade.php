@@ -72,50 +72,132 @@
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
-                <strong><a href="index.html"><img src="img/logo/logosn.png" alt="" /></a></strong>
+                <a href="{{ route('admin.dashboard') }}"><img class="main-logo" src="{{ asset('backend/img/logo/logo.png') }}" alt="" /></a>
+                <strong><a href="{{ route('admin.dashboard') }}"><img src="{{ asset('backend/img/logo/logosn.png') }}" alt="" /></a></strong>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li class="active">
-                            <a class="has-arrow" href="index.html">
-                                   <span class="educate-icon educate-home icon-wrap"></span>
-                                   <span class="mini-click-non">Home</span>
-                                </a>
+                            <a class="has-arrow" href="{{ route('admin.dashboard') }}">
+                                <span class="educate-icon educate-home icon-wrap"></span>
+                                <span class="mini-click-non">Dashboard</span>
+                            </a>
                             <ul class="submenu-angle" aria-expanded="true">
                                 <li><a title="Dashboard" href="{{ route('admin.dashboard') }}"><span class="mini-sub-pro">Dashboard</span></a></li>
+                               
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="has-arrow" href="all-teachers.html" aria-expanded="false"><span
+                                    class="educate-icon educate-teacher icon-wrap"></span> <span
+                                    class="mini-click-non">Teachers</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="All Teachers" href="all-teachers.html"><span class="mini-sub-pro">All
+                                            Teachers</span></a></li>
+                                <li><a title="Add Teacher" href="add-teacher.html"><span class="mini-sub-pro">Add
+                                            Teacher</span></a></li>
+                                <li><a title="Edit Teacher" href="edit-teacher.html"><span class="mini-sub-pro">Edit
+                                            Teacher</span></a></li>
+                                <li><a title="Teacher Profile" href="teacher-profile.html"><span
+                                            class="mini-sub-pro">Teacher Profile</span></a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="all-teachers.html" aria-expanded="false"><span class="educate-icon educate-teacher icon-wrap"></span> <span class="mini-click-non">Teachers</span></a>
+                            <a class="has-arrow" href="all-students.html" aria-expanded="false"><span
+                                    class="educate-icon educate-student icon-wrap"></span> <span
+                                    class="mini-click-non">Students</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All teachers" href="all-teachers.html"><span class="mini-sub-pro">All Teachers</span></a></li>
-                                <li><a title="Add Teacher" href="add-teacher.html"><span class="mini-sub-pro">Add Teacher</span></a></li>
-                                <li><a title="Edit Teacher" href="edit-teacher.html"><span class="mini-sub-pro">Edit Teacher</span></a></li>
-                                <li><a title="Teacher Profile" href="teacher-profile.html"><span class="mini-sub-pro">Teacher Profile</span></a></li>
+                                <li><a title="All Students" href="all-students.html"><span class="mini-sub-pro">All
+                                            Students</span></a></li>
+                                <li><a title="Add Students" href="add-student.html"><span class="mini-sub-pro">Add
+                                            Student</span></a></li>
+                                <li><a title="Edit Students" href="edit-student.html"><span class="mini-sub-pro">Edit
+                                            Student</span></a></li>
+                                <li><a title="Students Profile" href="student-profile.html"><span
+                                            class="mini-sub-pro">Student Profile</span></a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="all-students.html" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Students</span></a>
+                            <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span
+                                    class="educate-icon educate-course icon-wrap"></span> <span
+                                    class="mini-click-non">Classes</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Students" href="all-students.html"><span class="mini-sub-pro">All Students</span></a></li>
-                                <li><a title="Add Students" href="add-student.html"><span class="mini-sub-pro">Add Student</span></a></li>
-                                <li><a title="Edit Students" href="edit-student.html"><span class="mini-sub-pro">Edit Student</span></a></li>
-                                <li><a title="Students Profile" href="student-profile.html"><span class="mini-sub-pro">Student Profile</span></a></li>
+                                <li><a title="All Classes" href="all-courses.html"><span class="mini-sub-pro">All
+                                            Classes</span></a></li>
+                                <li><a title="Add Classes" href="add-course.html"><span class="mini-sub-pro">Add
+                                            class</span></a></li>
+                                <li><a title="Edit Classes" href="edit-course.html"><span class="mini-sub-pro">Edit
+                                            class</span></a></li>
+                                <li><a title="Classes Profile" href="course-info.html"><span
+                                            class="mini-sub-pro">Classes Info</span></a></li>
+                                <li><a title="Product Payment" href="course-payment.html"><span
+                                            class="mini-sub-pro">Classes Payment</span></a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a class="has-arrow" href="all-classes.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Classes</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Classes" href="all-classes.html"><span class="mini-sub-pro">All Classes</span></a></li>
-                                <li><a title="Add Classes" href="add-course.html"><span class="mini-sub-pro">Add Course</span></a></li>
-                                <li><a title="Edit Classes" href="edit-course.html"><span class="mini-sub-pro">Edit Course</span></a></li>
-                                <li><a title="Classes Profile" href="course-info.html"><span class="mini-sub-pro">Classes Info</span></a></li>
-                                <li><a title="Product Payment" href="course-payment.html"><span class="mini-sub-pro">Classes Payment</span></a></li>
-                            </ul>
-                        </li>
-                        
+
+
+                        {{-- 
+                        Admin Panel
+                            Dashboard:
+                                Total Students
+                                Total Teachers
+                                Total Fees Collected
+                                Total Salaries Paid
+                                Upcoming Events/Notifications 
+                            Student Management: 
+                                Add/Edit/Delete Students
+                                View Student Profiles (Name, Class, Fees, Attendance, Grades, etc.) 
+                                Assign Students to Classes/Sections 
+                            Teacher Management: 
+                                Add/Edit/Delete Teachers 
+                                View Teacher Profiles (Name, Subject, Salary, Contact, etc.) 
+                                Assign Teachers to Classes/Subjects 
+                            Fee Management: 
+                                Track Fee Payments (Paid/Unpaid) 
+                                Generate Fee Reports 
+                            Salary Management: 
+                                Track Teacher Salaries (Paid/Unpaid) 
+                                Generate Salary Reports 
+                            Attendance Management: 
+                                Track Student and Teacher Attendance 
+                                Generate Attendance Reports 
+                            Exam/Grades Management: 
+                                Add Exam Results 
+                                View Student Grades 
+                                Generate Report Cards 
+                            Notifications: 
+                                Send Notifications to Students/Teachers (e.g., Events, Holidays, etc.) 
+                            --}}
+
+                            {{-- 
+                            Teacher Section
+                                Dashboard:
+                                    View Assigned Classes/Subjects
+                                    View Student List (for their classes) 
+                                    View Attendance Records 
+                                Student Management:
+                                    Mark Attendance
+                                    Add/Update Grades
+                                Profile Management:
+                                    Update Personal Information
+                                    View Salary Details
+                                Notifications:
+                                    Receive Notifications from Admin 
+                                --}}
+                            {{-- 
+                            Student Section
+                                Dashboard:
+                                    View Attendance
+                                    View Grades/Report Card
+                                    View Fee Status
+                                Profile Management:
+                                    Update Personal Information
+                                Notifications:
+                                    Receive Notifications from Admin/Teachers 
+                            --}}
                     </ul>
                 </nav>
             </div>
@@ -128,8 +210,10 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="logo-pro">
-                    <a href="index.html"><img class="main-logo" src="{{ asset('backend/img/logo/logo.png') }}"
-                            alt="" /></a>
+                    <a href="index1.html">
+                        <img class="main-logo" src="{{ asset('backend/img/logo/logo.png') }}"
+                            alt="" />
+                        </a>
                 </div>
             </div>
         </div>
@@ -192,7 +276,7 @@
                                                         <li>
                                                             <a href="#">
                                                                 <div class="message-img">
-                                                                    <img src="img/contact/1.jpg" alt="">
+                                                                    <img src="{{ asset('backend/img/contact/1.jpg') }}" alt="">
                                                                 </div>
                                                                 <div class="message-content">
                                                                     <span class="message-date">16 Sept</span>
@@ -239,7 +323,7 @@
                                             <li class="nav-item">
                                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                                                     class="nav-link dropdown-toggle">
-                                                    <img src="img/product/pro4.jpg" alt="" />
+                                                    <img src="{{ asset('backend/img/product/pro4.jpg') }}" alt="" />
                                                     <span class="admin-name">Prof.Anderson</span>
                                                     <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                 </a>
@@ -286,7 +370,7 @@
                                                                             <a href="#">
                                                                                 <div class="notes-list-flow">
                                                                                     <div class="notes-img">
-                                                                                        <img src="img/contact/4.jpg"
+                                                                                        <img src="{{ asset('backend/img/contact/4.jpg') }}"
                                                                                             alt="" />
                                                                                     </div>
                                                                                     <div class="notes-content">
@@ -564,9 +648,9 @@
                                         <ul id="democrou" class="collapse dropdown-header-top">
                                             <li><a href="all-classes.html">All Classes</a>
                                             </li>
-                                            <li><a href="add-course.html">Add Course</a>
+                                            <li><a href="add-course.html">Add class</a>
                                             </li>
-                                            <li><a href="edit-course.html">Edit Course</a>
+                                            <li><a href="edit-course.html">Edit class</a>
                                             </li>
                                             <li><a href="course-profile.html">Classes Info</a>
                                             </li>
