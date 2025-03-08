@@ -2,28 +2,20 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run()
     {
-        // Create Super Admin
         $superAdmin = User::create([
             'name' => 'Super Admin',
             'email' => 'superadmin@school.com',
             'password' => bcrypt('password'),
         ]);
-        $superAdminRole = Role::create(['name' => 'super-admin']);
-        $superAdmin->assignRole($superAdminRole);
+        $superAdmin->assignRole('super-admin');
 
         // Create Admin
         $admin = User::create([
@@ -31,8 +23,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@school.com',
             'password' => bcrypt('password'),
         ]);
-        $adminRole = Role::create(['name' => 'admin']);
-        $admin->assignRole($adminRole);
+        $admin->assignRole('admin');
 
         // Create Teacher
         $teacher = User::create([
@@ -40,8 +31,7 @@ class UserSeeder extends Seeder
             'email' => 'teacher@school.com',
             'password' => bcrypt('password'),
         ]);
-        $teacherRole = Role::create(['name' => 'teacher']);
-        $teacher->assignRole($teacherRole);
+        $teacher->assignRole('teacher');
 
         // Create Student
         $student = User::create([
@@ -49,7 +39,6 @@ class UserSeeder extends Seeder
             'email' => 'student@school.com',
             'password' => bcrypt('password'),
         ]);
-        $studentRole = Role::create(['name' => 'student']);
-        $student->assignRole($studentRole);
+        $student->assignRole('student');
     }
 }
