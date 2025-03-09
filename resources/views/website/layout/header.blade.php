@@ -32,11 +32,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="main-nav">
       <ul class="nav navbar-nav navbar-nav-margin-left">
-        <li class="dropdown active">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <span class="caret"></span></a>
+        <li class="dropdown ">
+          {{-- <a href="{{ route('home') }}" class="dropdown-toggle" data-toggle="dropdown">Home<span class="caret"></span></a> --}}
+          <a href="{{ route('home') }}" class="dropdown-toggle">Home<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li class="active"><a href="index.html">Home page</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
+            {{-- <li class="active"><a href="index.html">Home page</a></li> --}}
+            {{-- <li><a href="pricing.html">Pricing</a></li>
             <li><a href="tutors.html">Tutors</a></li>
             <li><a href="survey.html">Survey</a></li>
             <li><a href="website-forum.html">Forum Home</a></li>
@@ -44,20 +45,20 @@
             <li><a href="website-forum-thread.html">Forum Thread</a></li>
             <li><a href="website-blog.html">Blog Listing</a></li>
             <li><a href="website-blog-post.html">Blog Post</a></li>
-            <li><a href="website-contact.html">Contact</a></li>
+            <li><a href="website-contact.html">Contact</a></li> --}}
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <span class="caret"></span></a>
-          <ul class="dropdown-menu">
+          {{-- <ul class="dropdown-menu">
             <li><a href="website-directory-grid.html">Grid Directory</a></li>
             <li><a href="website-directory-list.html">List Directory</a></li>
             <li><a href="website-course.html">Single Course</a></li>
-          </ul>
+          </ul> --}}
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student <span class="caret"></span></a>
-          <ul class="dropdown-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Students <span class="caret"></span></a>
+          {{-- <ul class="dropdown-menu">
             <li><a href="website-student-dashboard.html">Dashboard</a></li>
             <li><a href="website-student-courses.html">My Courses</a></li>
             <li><a href="website-take-course.html">Take Course</a></li>
@@ -65,11 +66,11 @@
             <li><a href="website-take-quiz.html">Take Quiz</a></li>
             <li><a href="website-student-messages.html">Messages</a></li>
             <li><a href="website-student-profile.html">Private Profile</a></li>
-          </ul>
+          </ul> --}}
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instructor <span class="caret"></span></a>
-          <ul class="dropdown-menu">
+          {{-- <ul class="dropdown-menu">
             <li><a href="website-instructor-dashboard.html">Dashboard</a></li>
             <li><a href="website-instructor-courses.html">My Courses</a></li>
             <li><a href="website-instructor-course-edit-course.html">Edit Course</a></li>
@@ -77,9 +78,9 @@
             <li><a href="website-instructor-statement.html">Statement</a></li>
             <li><a href="website-instructor-messages.html">Messages</a></li>
             <li><a href="website-instructor-profile.html">Private Profile</a></li>
-          </ul>
+          </ul> --}}
         </li>
-        <li class="dropdown">
+        {{-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">UI <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="essential-buttons.html">Buttons</a></li>
@@ -90,7 +91,7 @@
             <li><a href="essential-tables.html">Tables</a></li>
             <li><a href="essential-tabs.html">Tabs</a></li>
           </ul>
-        </li>
+        </li> --}}
       </ul>
       <div class="navbar-right">
 
@@ -111,20 +112,30 @@
                 {{ Auth::user()->name }} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-                <li>
-                    <a href="website-student-dashboard.html">
-                        <i class="fa fa-bar-chart-o"></i> Dashboard
+              <li>
+                @if (auth()->user() && auth()->user()->hasRole('admin') || auth()->user() && auth()->user()->hasRole('super-admin'))
+                    <a href="{{ route('admin_dashboard') }}">
+                        <i class="fa fa-bar-chart-o"></i> Admin Dashboard
                     </a>
-                </li>
-                <li>
-                    <a href="{{ route('logout') }}"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="fa fa-sign-out"></i> Logout
+                @elseif (auth()->user() && auth()->user()->hasRole('teacher'))
+                    <a href="{{ route('teacher_dashboard') }}">
+                        <i class="fa fa-chalkboard-teacher"></i> Teacher Dashboard
                     </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </li>
+                @elseif (auth()->user() && auth()->user()->hasRole('student'))
+                    <a href="{{ route('student_dashboard') }}">
+                        <i class="fa fa-book"></i> Student Dashboard
+                    </a>
+                @endif
+              </li>            
+              <li>
+                  <a href="{{ route('logout') }}"
+                      onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                      <i class="fa fa-sign-out"></i> Logout
+                  </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
+              </li>
             </ul>
         </li>
         <!-- // END User Dropdown -->

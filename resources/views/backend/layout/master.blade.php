@@ -72,19 +72,19 @@
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="{{ route('admin.dashboard') }}"><img class="main-logo" src="{{ asset('backend/img/logo/logo.png') }}" alt="" /></a>
-                <strong><a href="{{ route('admin.dashboard') }}"><img src="{{ asset('backend/img/logo/logosn.png') }}" alt="" /></a></strong>
+                <a href="{{ route('admin_dashboard') }}"><img class="main-logo" src="{{ asset('backend/img/logo/logo.png') }}" alt="" /></a>
+                <strong><a href="{{ route('admin_dashboard') }}"><img src="{{ asset('backend/img/logo/logosn.png') }}" alt="" /></a></strong>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li class="active">
-                            <a class="has-arrow" href="{{ route('admin.dashboard') }}">
+                            <a class="has-arrow" href="{{ route('admin_dashboard') }}">
                                 <span class="educate-icon educate-home icon-wrap"></span>
                                 <span class="mini-click-non">Dashboard</span>
                             </a>
                             <ul class="submenu-angle" aria-expanded="true">
-                                <li><a title="Dashboard" href="{{ route('admin.dashboard') }}"><span class="mini-sub-pro">Dashboard</span></a></li>
+                                <li><a title="Dashboard" href="{{ route('admin_dashboard') }}"><span class="mini-sub-pro">Dashboard</span></a></li>
                                
                                 </li>
                             </ul>
@@ -614,7 +614,7 @@
                                     <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span
                                                 class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                         <ul class="collapse dropdown-header-top">
-                                            <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                            <li><a href="{{ route('admin_dashboard') }}">Dashboard</a></li>
                                         </ul>
                                     </li>
                                     <li><a data-toggle="collapse" data-target="#demoevent" href="#">Teachers <span
@@ -676,7 +676,7 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <ul class="breadcome-menu">
-                                        <li><a href="{{ route('admin.dashboard') }}">Home</a> <span class="bread-slash">/</span>
+                                        <li><a href="{{ route('admin_dashboard') }}">Home</a> <span class="bread-slash">/</span>
                                         </li>
                                         <li><span class="bread-blod">Dashboard</span>
                                         </li>

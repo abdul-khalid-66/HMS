@@ -9,5 +9,12 @@ use App\Http\Controllers\AdminController;
 
 // Admin Routes
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'dashboard']);
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin_dashboard');
 });
+// Route::get('/dashboard', function () {
+//     dd(auth()->user()->hasRole('admin'));
+// })->name('admin_dashboard');
+
+// Route::middleware(['auth', 'role:super-admin'])->group(function () {
+//     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin_dashboard');
+// });

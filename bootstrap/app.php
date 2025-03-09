@@ -15,11 +15,19 @@ return Application::configure(basePath: dirname(__DIR__))
             $router->middleware('web')
                 ->prefix('admin')
                 ->group(base_path('routes/admin.php'));
+            $router->middleware('teacher')
+                ->prefix('admin')
+                ->group(base_path('routes/teacher.php'));
+            $router->middleware('web')
+                ->prefix('student')
+                ->group(base_path('routes/student.php'));
         },
         commands: __DIR__ . '/../routes/console.php',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'role' => \App\Http\Middleware\RoleMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
