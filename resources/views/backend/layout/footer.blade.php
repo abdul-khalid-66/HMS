@@ -60,6 +60,19 @@
     <!-- tawk chat JS
 		============================================ -->
     {{-- <script src="{{ asset('backend/js/tawk-chat.js') }}"></script> --}}
-</body>
 
-</html>
+<!-- Include SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('title') && session('message') && session('type'))
+    <script>
+        Swal.fire({
+            title: "{{ session('title') }}",
+            text: "{{ session('message') }}",
+            icon: "{{ session('type') }}",
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
+
+

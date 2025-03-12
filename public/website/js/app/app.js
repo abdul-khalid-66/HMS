@@ -3759,7 +3759,7 @@
         };
 
         module.exports = function () {
-            initScripts();
+            // initScripts();
 
             /*
              * Clustering

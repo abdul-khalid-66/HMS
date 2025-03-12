@@ -62,6 +62,8 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="{{ asset('backend/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    @stack('css')
+
 </head>
 
 <body>
@@ -91,13 +93,13 @@
                         </li>
 
                         <li>
-                            <a class="has-arrow" href="all-teachers.html" aria-expanded="false"><span
+                            <a class="has-arrow" href="{{ route('teachers_view')}}" aria-expanded="false"><span
                                     class="educate-icon educate-teacher icon-wrap"></span> <span
                                     class="mini-click-non">Teachers</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Teachers" href="all-teachers.html"><span class="mini-sub-pro">All
+                                <li><a title="All Teachers" href="{{ route('teachers_view')}}"><span class="mini-sub-pro">All
                                             Teachers</span></a></li>
-                                <li><a title="Add Teacher" href="add-teacher.html"><span class="mini-sub-pro">Add
+                                <li><a title="Add Teacher" href="{{ route('teacher_create')}}"><span class="mini-sub-pro">Add
                                             Teacher</span></a></li>
                                 <li><a title="Edit Teacher" href="edit-teacher.html"><span class="mini-sub-pro">Edit
                                             Teacher</span></a></li>
@@ -197,6 +199,9 @@
                                     Update Personal Information
                                 Notifications:
                                     Receive Notifications from Admin/Teachers 
+
+                                    
+                                    https://chatgpt.com/canvas/shared/67cdd4a84b4c81919e46a15784aacffd
                             --}}
                     </ul>
                 </nav>
@@ -324,7 +329,7 @@
                                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                                                     class="nav-link dropdown-toggle">
                                                     <img src="{{ asset('backend/img/product/pro4.jpg') }}" alt="" />
-                                                    <span class="admin-name">Prof.Anderson</span>
+                                                    <span class="admin-name">{{ auth()->user()->name }}</span>
                                                     <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                 </a>
                                                 <ul role="menu"
@@ -336,7 +341,15 @@
                                                     <li><a href="#"><span
                                                                 class="edu-icon edu-settings author-log-ic"></span>Settings</a>
                                                     </li>
-                                                    <li><a href="#"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                    <li>
+                                                        <a href="{{ route('logout') }}"
+                                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                            <i class="fa fa-sign-out"></i> Logout
+                                                        </a>
+                                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                            @csrf
+                                                        </form>
+                                                        {{-- <a href="{{ route('logout') }}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a> --}}
                                                     </li>
                                                 </ul>
                                             </li>
@@ -620,7 +633,7 @@
                                     <li><a data-toggle="collapse" data-target="#demoevent" href="#">Teachers <span
                                                 class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                         <ul id="demoevent" class="collapse dropdown-header-top">
-                                            <li><a href="all-teachers.html">All Teachers</a>
+                                            <li><a href="{{ route('teachers_view')}}">All Teachers</a>
                                             </li>
                                             <li><a href="add-teacher.html">Add Teacher</a>
                                             </li>
@@ -694,6 +707,7 @@
 
 </div>
     @extends('backend.layout.footer')
+    @stack('js')
 </body>
 
 </html>
