@@ -11,24 +11,38 @@ class Teacher extends Model
 
     protected $fillable = [
         'user_id',
-        'phone',
+        'fullname',
+        'email',
+        'phoneno',
         'address',
-        'profile',
-        'department',
-        'gender',
         'date_of_birth',
         'postcode',
-        'description',
+        'department',
+        'gender',
         'state',
         'city',
+        'password',
         'website',
-        'facebook_url',
-        'twitter_url',
-        'linkedin_url',
+        'facebook',
+        'twitter',
+        'linkedin',
+        'description',
+        'subject',
+        'education',
+        'profile',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+
+    protected function casts(): array
+    {
+        return [
+            'subject'   => 'array',  // Cast 'subject' to array
+            'education' => 'array', // Cast 'education' to array
+        ];
     }
 }

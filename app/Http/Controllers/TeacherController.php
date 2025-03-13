@@ -34,30 +34,36 @@ class TeacherController extends Controller
 
     public function store(Request $request)
     {
-
-
         $request->validate([
             'fullname'       => 'required|string|max:255',
             'email'          => 'required|email|unique:users,email',
             'phoneno'       => 'required|numeric',
-            'password'      => 'required|min:6',
-            'confarmpassword' => 'required|same:password',
             'address'       => 'required|string',
-            'postcode'      => 'required|string',
+            'date_of_birth' => 'required',
             'department'    => 'required|string',
+            'subjects'       => 'required',
+            'gender'        => 'required',
             'state'         => 'required|string',
             'city'          => 'required|string',
-            'website'       => 'nullable|url',
-            'profile'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5048',
+            'website'       => 'nullable',
+            'profile'       => 'required|image|mimes:jpeg,png,jpg,gif|max:5048',
+            'password'      => 'required|min:6',
+            'confarmpassword' => 'required|same:password',
         ]);
-
 
         $imagePath = $request->hasFile('profile')
             ? Storage::disk('public')->put('teachers', $request->file('profile'))
             : null;
 
+        $nameParts = explode(" ", $request->fullname);
+
+        $firstName = $nameParts[0];
+
+        $lastName = $nameParts[1] ?? '';
         $user = User::create([
             'name'      => $request->fullname,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
         ]);
@@ -65,20 +71,22 @@ class TeacherController extends Controller
         $user->assignRole(Role::findByName('teacher'));
 
         $user->teacher()->create([
-            'phone'         => $request->phoneno,
-            'address'       => $request->address,
-            'profile'       => $imagePath,
-            'department'    => $request->department,
-            'gender'        => $request->gender,
-            'date_of_birth' => $request->finish,
-            'postcode'      => $request->postcode,
-            'description'   => $request->description,
-            'state'         => $request->state,
-            'city'          => $request->city,
-            'website'       => $request->website,
-            'facebook_url'  => $request->facebook_url,
-            'twitter_url'   => $request->twitter_url,
-            'linkedin_url'  => $request->linkedin_url,
+            'phone'         => $request->phoneno ?? "--",
+            'address'       => $request->address ?? "--",
+            'date_of_birth' => $request->date_of_birth ?? "--",
+            'postcode'      => $request->postcode ?? "--",
+            'department'    => $request->department ?? "--",
+            'gender'        => $request->gender ?? "--",
+            'state'         => $request->state ?? "--",
+            'city'          => $request->city ?? "--",
+            'profile'       => $imagePath ?? "--",
+            'description'   => $request->description ?? "--",
+            'website'       => $request->website ?? "--",
+            'facebook_url'  => $request->facebook ?? "--",
+            'twitter_url'   => $request->twitter ?? "--",
+            'linkedin_url'  => $request->linkedin ?? "--",
+            'subject'       => $request->input('subjects', []),
+            'education'     => $request->input('education', []),
         ]);
 
         return  redirect()->back()->with(['title' => 'Done', 'message' => 'Teacher data saved successfully!', 'type' => 'success']);

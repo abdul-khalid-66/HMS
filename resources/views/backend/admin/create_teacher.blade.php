@@ -7,6 +7,9 @@
     <!-- Include jQuery Validation Plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <!-- Optional CSS for Styling -->
+
+    <!-- Chosen CSS -->
+    <link rel="stylesheet" href="{{ asset('backend/css/chosen/bootstrap-chosen.css') }}">
     <style>
         .error {
             color: red;
@@ -79,9 +82,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-payment-inner-st">
                     <ul id="myTabedu1" class="tab-review-design">
-                        <li class="active"><a href="#description">Basic Information</a></li>
-                        {{-- <li><a href="#reviews"> Account Information</a></li>
-                        <li><a href="#INFORMATION">Social Information</a></li> --}}
+                        <li class="active"><a href="#description">Add Teacher Information</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content custom-product-edit">
                         <div class="product-tab-list tab-pane fade active in" id="description">
@@ -91,7 +92,6 @@
                                         <div id="dropzone1" class="pro-ad">
                                             <form method="POST" action="{{ route('teacher_store') }}" class="needsclick add-professors" id="demo1-upload" enctype="multipart/form-data">
                                                 @csrf
-                                            
                                                 <!-- Form Fields -->
                                                 <div class="row">
                                                     <!-- Left Side: Image Upload Section -->
@@ -114,92 +114,64 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                            
                                                     <!-- Right Side: Form Fields -->
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
+                                                            <label>Full Name</label>
                                                             <input name="fullname" type="text" class="form-control" placeholder="Full Name" value="{{ old('fullname') }}">
                                                             @error('fullname')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
                                                         </div>
-                                                        
                                                         <div class="form-group">
+                                                            <label>Email address</label>
                                                             <input name="email" type="text" class="form-control" placeholder="Email" value="{{ old('email') }}">
                                                             @error('email')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
                                                         </div>
-                                            
                                                         <div class="form-group">
+                                                            <label>Phone Number</label>
                                                             <input name="phoneno" type="number" class="form-control" placeholder="Phone" value="{{ old('phoneno') }}">
                                                             @error('phoneno')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
                                                         </div>
-                                            
                                                         <div class="form-group">
-                                                            <input name="password" type="password" class="form-control" placeholder="Password">
-                                                            @error('password')
-                                                                <div class="text-danger">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
-                                            
-                                                        <div class="form-group">
-                                                            <input name="confarmpassword" type="password" class="form-control" placeholder="Confirm Password">
-                                                            @error('confarmpassword')
-                                                                <div class="text-danger">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
-                                            
-                                                        <div class="form-group">
+                                                            <label>Address</label>
                                                             <input name="address" type="text" class="form-control" placeholder="Address" value="{{ old('address') }}">
                                                             @error('address')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
                                                         </div>
-                                            
-                                                        {{-- <div class="form-group">
-                                                            <input name="mobileno" type="number" class="form-control" placeholder="Mobile no." value="{{ old('mobileno') }}">
-                                                            @error('mobileno')
-                                                                <div class="text-danger">{{ $message }}</div>
-                                                            @enderror
-                                                        </div> --}}
-                                            
                                                         <div class="form-group">
-                                                            <input name="finish" type="date" title="Date of birth" class="form-control" placeholder="Date of Birth" value="{{ old('finish') }}">
-                                                            @error('finish')
+                                                            <label>Date of birth</label>
+                                                            <input name="date_of_birth" type="date" title="Date of birth" class="form-control" placeholder="Date of Birth" value="{{ old('date_of_birth') }}">
+                                                            @error('date_of_birth')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
                                                         </div>
-                                            
                                                         <div class="form-group">
+                                                            <label>Post Code</label>
                                                             <input name="postcode" type="text" class="form-control" placeholder="Postcode" value="{{ old('postcode') }}">
                                                             @error('postcode')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
                                                         </div>
-                                            
-                                                        <div class="form-group res-mg-t-15">
-                                                            <textarea name="description" placeholder="Description">{{ old('description') }}</textarea>
-                                                            @error('description')
-                                                                <div class="text-danger">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
                                                     </div>
                                                 </div>
-                                            
                                                 <!-- Additional Fields -->
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
+                                                            <label>Department</label>
                                                             <input name="department" type="text" class="form-control" placeholder="Department" value="{{ old('department') }}">
                                                             @error('department')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
                                                         </div>
-                                            
                                                         <div class="form-group">
+                                                            <label>Gender</label>
                                                             <select name="gender" class="form-control">
                                                                 <option value="none" selected disabled>Select Gender</option>
                                                                 <option value="0" {{ old('gender') == '0' ? 'selected' : '' }}>Male</option>
@@ -211,14 +183,10 @@
                                                         </div>
                                             
                                                         <div class="form-group">
+                                                            <label>Provence</label>
                                                             <select name="state" class="form-control">
                                                                 <option value="none" selected disabled>Select state</option>
                                                                 <option value="0" {{ old('state') == '0' ? 'selected' : '' }}>Gujarat</option>
-                                                                <option value="1" {{ old('state') == '1' ? 'selected' : '' }}>Maharastra</option>
-                                                                <option value="2" {{ old('state') == '2' ? 'selected' : '' }}>Rajastan</option>
-                                                                <option value="3" {{ old('state') == '3' ? 'selected' : '' }}>Maharastra</option>
-                                                                <option value="4" {{ old('state') == '4' ? 'selected' : '' }}>Rajastan</option>
-                                                                <option value="5" {{ old('state') == '5' ? 'selected' : '' }}>Gujarat</option>
                                                             </select>
                                                             @error('state')
                                                                 <div class="text-danger">{{ $message }}</div>
@@ -226,59 +194,100 @@
                                                         </div>
                                             
                                                         <div class="form-group">
+                                                            <label>City</label>
                                                             <select name="city" class="form-control">
                                                                 <option value="none" selected disabled>Select city</option>
                                                                 <option value="0" {{ old('city') == '0' ? 'selected' : '' }}>Surat</option>
-                                                                <option value="1" {{ old('city') == '1' ? 'selected' : '' }}>Baroda</option>
-                                                                <option value="2" {{ old('city') == '2' ? 'selected' : '' }}>Navsari</option>
-                                                                <option value="3" {{ old('city') == '3' ? 'selected' : '' }}>Baroda</option>
-                                                                <option value="4" {{ old('city') == '4' ? 'selected' : '' }}>Surat</option>
                                                             </select>
                                                             @error('city')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
                                                         </div>
-                                                    </div>
+                                                       
+                                                        <div class="form-group">
+                                                            <label>Password</label>
+                                                            <input name="password" type="password" class="form-control" placeholder="Password">
+                                                            @error('password')
+                                                                <div class="text-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
                                             
+                                                        <div class="form-group">
+                                                            <label>Confirm Password</label>
+                                                            <input name="confarmpassword" type="password" class="form-control" placeholder="Confirm Password">
+                                                            @error('confarmpassword')
+                                                                <div class="text-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
+                                                            <label>Websit link</label>
                                                             <input name="website" type="text" class="form-control" placeholder="Website URL" value="{{ old('website') }}">
                                                             @error('website')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
                                                         </div>
-                                            
                                                         <!-- Social Media Links -->
                                                         <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Facebook URL" value="{{ old('facebook') }}">
+                                                            <label>Facebook link</label>
+                                                            <input type="url" class="form-control" name="facebook" placeholder="Facebook URL" value="{{ old('facebook') }}">
                                                             @error('facebook')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
                                                         </div>
-                                            
                                                         <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Twitter URL" value="{{ old('twitter') }}">
+                                                            <label>Twitter link</label>
+                                                            <input type="url" class="form-control" name="twitter" placeholder="Twitter URL" value="{{ old('twitter') }}">
                                                             @error('twitter')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
                                                         </div>
-                                            
                                                         <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Google Plus" value="{{ old('google_plus') }}">
-                                                            @error('google_plus')
-                                                                <div class="text-danger">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
-                                            
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Linkedin URL" value="{{ old('linkedin') }}">
+                                                            <label>Linkedin</label>
+                                                            <input type="url" class="form-control" name="linkedin" placeholder="Linkedin URL" value="{{ old('linkedin') }}">
                                                             @error('linkedin')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
                                                         </div>
+
+                                                        <div class="form-group res-mg-t-15">
+                                                            <label>Description</label>
+                                                            <textarea name="description" placeholder="Description">{{ old('description') }}</textarea>
+                                                            @error('description')
+                                                                <div class="text-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="form-group chosen-select-single">
+                                                            <label>Subjects</label>
+                                                            <select data-placeholder="Choose a teacher subjects..." name="subjects[]" class="form-control chosen-select" multiple tabindex="-1">
+                                                                <option value="">Select subject</option>
+                                                                <option value="United States" {{ in_array('United States', old('subjects', [])) ? 'selected' : '' }}>United States</option>
+                                                                <option value="United Kingdom" {{ in_array('United Kingdom', old('subjects', [])) ? 'selected' : '' }}>United Kingdom</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            
+                                             <!-- Education Information -->
+                                             <div id="education-fields">
+                                                <div class="education-field" style="margin-top: 5%">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="education[0][degree]" placeholder="Degree">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="education[0][institution]" placeholder="Institution">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="education[0][year]" placeholder="Year">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    
+                                            <!-- Button to Add More Education Fields -->
+                                            <button type="button" id="add-education" class="btn btn-secondary">Add More Education</button>
+                                    
                                                 <!-- Submit Button -->
                                                 <div class="row">
                                                     <div class="col-lg-12">
@@ -294,62 +303,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="product-tab-list tab-pane fade" id="reviews">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="review-content-section">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <form id="acount-infor" action="#" class="acount-infor">
-                                                    <div class="devit-card-custom">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" name="email" placeholder="Email">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input name="phoneno" type="number" class="form-control" placeholder="Phone">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input name="password" type="password" class="form-control" placeholder="Password">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input name="confarmpassword" type="password" class="form-control" placeholder="Confirm Password">
-                                                        </div>
-                                                        <a href="#" class="btn btn-primary waves-effect waves-light">Submit</a>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="product-tab-list tab-pane fade" id="INFORMATION">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="review-content-section">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="devit-card-custom">
-                                                    <div class="form-group">
-                                                        <input type="url" class="form-control" placeholder="Facebook URL">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="url" class="form-control" placeholder="Twitter URL">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="url" class="form-control" placeholder="Google Plus">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="url" class="form-control" placeholder="Linkedin URL">
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -360,30 +313,9 @@
 
 @push('js')
 
-
- <!-- form validate JS
-============================================ -->
-
-
-
-    <!-- maskedinput JS
-============================================ -->
-<script src="{{ asset('backend/js/jquery.maskedinput.min.js') }}"></script>
-<script src="{{ asset('backend/js/masking-active.js') }}"></script>
-<!-- datepicker JS
-    ============================================ -->
-    
-    
-<script src="{{ asset('backend/js/datepicker/jquery-ui.min.js') }}"></script>
-<script src="{{ asset('backend/js/datepicker/datepicker-active.js') }}"></script>
-
-<script src="{{ asset('backend/js/form-validation/jquery.form.min.js') }}"></script>
-<script src="{{ asset('backend/js/form-validation/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('backend/js/form-validation/form-active.js') }}"></script>
-<script src="{{ asset('backend/js/dropzone/dropzone.js') }}"></script>
-<script src="{{ asset('backend/js/tab.js') }}"></script>
-<!-- JavaScript for Image Preview -->
-                                            <!-- JavaScript for Image Preview -->
+    <!-- Chosen JS -->
+    <script src="{{ asset('backend/js/chosen/chosen.jquery.js') }}"></script>
+    <script src="{{ asset('backend/js/chosen/chosen-active.js') }}"></script>
     <script>
         function previewImage(event) {
             const reader = new FileReader();
@@ -394,6 +326,41 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
+
+    <!-- JavaScript to Add More Education Fields -->
+    <script>
+        $(document).ready(function () {
+            // Initialize a counter to keep track of the number of education fields
+            let educationCount = 0;
+    
+            $('#add-education').on('click', function () {
+                // Increment the counter each time a new field is added
+                educationCount++;
+    
+                // Create a new education field container
+                var newEducationField = $('<div class="education-field"></div>');
+    
+                // Create and append the Degree Field with the updated index
+                var degreeField = $('<div class="form-group" style="margin-top: 5%"></div>')
+                    .append('<input type="text" class="form-control" name="education[' + educationCount + '][degree]" placeholder="Degree">');
+                newEducationField.append(degreeField);
+    
+                // Create and append the Institution Field with the updated index
+                var institutionField = $('<div class="form-group"></div>')
+                    .append('<input type="text" class="form-control" name="education[' + educationCount + '][institution]" placeholder="Institution">');
+                newEducationField.append(institutionField);
+    
+                // Create and append the Year Field with the updated index
+                var yearField = $('<div class="form-group"></div>')
+                    .append('<input type="text" class="form-control" name="education[' + educationCount + '][year]" placeholder="Year">');
+                newEducationField.append(yearField);
+    
+                // Append the new education field group to the container
+                $('#education-fields').append(newEducationField);
+            });
+        });
+    </script>
+    
 
     <!-- jQuery Validation Script -->
     <script>
@@ -431,7 +398,7 @@
                         minlength: 10,
                         maxlength: 10
                     },
-                    finish: {
+                    date_of_birth: {
                         required: true
                     },
                     postcode: {
@@ -490,7 +457,7 @@
                         minlength: "Mobile number must be 10 digits",
                         maxlength: "Mobile number must be 10 digits"
                     },
-                    finish: {
+                    date_of_birth: {
                         required: "Please enter your date of birth"
                     },
                     postcode: {
@@ -522,5 +489,7 @@
                 }
             });
         });
+
     </script>
+
 @endpush
