@@ -174,8 +174,8 @@
                                                             <label>Gender</label>
                                                             <select name="gender" class="form-control">
                                                                 <option value="none" selected disabled>Select Gender</option>
-                                                                <option value="0" {{ old('gender') == '0' ? 'selected' : '' }}>Male</option>
-                                                                <option value="1" {{ old('gender') == '1' ? 'selected' : '' }}>Female</option>
+                                                                <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                                                                <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
                                                             </select>
                                                             @error('gender')
                                                                 <div class="text-danger">{{ $message }}</div>
@@ -186,7 +186,10 @@
                                                             <label>Provence</label>
                                                             <select name="state" class="form-control">
                                                                 <option value="none" selected disabled>Select state</option>
-                                                                <option value="0" {{ old('state') == '0' ? 'selected' : '' }}>Gujarat</option>
+                                                                <option value="Sindh" {{ old('state') == 'Sindh' ? 'selected' : '' }}>Sindh</option>
+                                                                <option value="Punjab" {{ old('state') == 'Punjab' ? 'selected' : '' }}>Punjab</option>
+                                                                <option value="Balochistan" {{ old('state') == 'Balochistan' ? 'selected' : '' }}>Balochistan</option>
+                                                                <option value="Kpk" {{ old('state') == 'Kpk' ? 'selected' : '' }}>Khyber Pakhtun khaw</option>
                                                             </select>
                                                             @error('state')
                                                                 <div class="text-danger">{{ $message }}</div>
@@ -197,7 +200,12 @@
                                                             <label>City</label>
                                                             <select name="city" class="form-control">
                                                                 <option value="none" selected disabled>Select city</option>
-                                                                <option value="0" {{ old('city') == '0' ? 'selected' : '' }}>Surat</option>
+                                                                <option value="Hyderabad" {{ old('city') == 'Hyderabad' ? 'selected' : '' }}>Hyderabad</option>
+                                                                <option value="Karachi" {{ old('city') == 'Karachi' ? 'selected' : '' }}>Karachi</option>
+                                                                <option value="Lahore" {{ old('city') == 'Lahore' ? 'selected' : '' }}>Lahore</option>
+                                                                <option value="Islamabad" {{ old('city') == 'Islamabad' ? 'selected' : '' }}>Islamabad</option>
+                                                                <option value="Peshawer" {{ old('city') == 'Peshawer' ? 'selected' : '' }}>Peshawer</option>
+                                                                <option value="Quita" {{ old('city') == 'Quita' ? 'selected' : '' }}>Quita</option>
                                                             </select>
                                                             @error('city')
                                                                 <div class="text-danger">{{ $message }}</div>
@@ -224,9 +232,6 @@
                                                         <div class="form-group">
                                                             <label>Websit link</label>
                                                             <input name="website" type="text" class="form-control" placeholder="Website URL" value="{{ old('website') }}">
-                                                            @error('website')
-                                                                <div class="text-danger">{{ $message }}</div>
-                                                            @enderror
                                                         </div>
                                                         <!-- Social Media Links -->
                                                         <div class="form-group">
@@ -259,13 +264,19 @@
                                                             @enderror
                                                         </div>
                                                     </div>
+                                                    @php
+                                                        $allSubjects = ['Physics', 'Math', 'English', 'Chemistry'];
+                                                    @endphp
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group chosen-select-single">
                                                             <label>Subjects</label>
                                                             <select data-placeholder="Choose a teacher subjects..." name="subjects[]" class="form-control chosen-select" multiple tabindex="-1">
                                                                 <option value="">Select subject</option>
-                                                                <option value="United States" {{ in_array('United States', old('subjects', [])) ? 'selected' : '' }}>United States</option>
-                                                                <option value="United Kingdom" {{ in_array('United Kingdom', old('subjects', [])) ? 'selected' : '' }}>United Kingdom</option>
+                                                                @foreach($allSubjects as $subject)
+                                                                    <option value="{{ $subject }}" {{ in_array($subject, old('subjects', [])) ? 'selected' : '' }}>
+                                                                        {{ $subject }}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -420,10 +431,7 @@
                     city: {
                         required: true
                     },
-                    website: {
-                        required: true,
-                        url: true
-                    }
+                   
                 },
                 messages: {
                     firstname: {
@@ -479,10 +487,7 @@
                     city: {
                         required: "Please select your city"
                     },
-                    website: {
-                        required: "Please enter your website URL",
-                        url: "Please enter a valid URL"
-                    }
+                   
                 },
                 errorPlacement: function(error, element) {
                     error.insertAfter(element); // Display error messages after the input field

@@ -12,6 +12,9 @@ Route::get('/', function () {
     return view('website.index');
 })->name('home');
 
+Route::get('/testing', function () {
+    return view('welcome');
+})->name('home');
 Auth::routes();
 
 // Attendance Routes

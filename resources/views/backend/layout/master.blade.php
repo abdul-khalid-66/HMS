@@ -64,6 +64,7 @@
     <script src="{{ asset('backend/js/vendor/modernizr-2.8.3.min.js') }}"></script>
     @stack('css')
 
+    
 </head>
 
 <body>
