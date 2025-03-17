@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('classes', function (Blueprint $table) {
+        Schema::create('salaries', function (Blueprint $table) {
             $table->id();
-            $table->string('class_name'); // e.g., Class 10
-            $table->string('section'); // e.g., Section A
+            $table->foreignId('teacher_id')->constrained('users')->onDelete('cascade');
+            $table->decimal('amount', 8, 2);
+            $table->boolean('paid')->default(false);
+            $table->date('payment_date');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('classes');
+        Schema::dropIfExists('salaries');
     }
 };

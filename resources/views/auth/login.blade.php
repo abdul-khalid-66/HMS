@@ -80,6 +80,22 @@
         <div class="panel panel-default text-center paper-shadow" data-z="0.5">
           <h1 class="text-display-1 text-center margin-bottom-none">Sign In</h1>
           <div class="panel-body">
+            @php
+            $tenantDomain   = request()->segment(1);
+          @endphp
+            @if ($tenantDomain)
+              @php
+                  $tenant = App\Models\Tenant::where('domain', $tenantDomain)->first();
+              @endphp
+                @if ($tenant)
+                   <h4> Login form</h4>
+                @else
+                    <h4> Admin Login form</h4>
+                @endif
+            @else
+                <h4> Admin Login form</h4>
+            @endif
+
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="form-group">

@@ -98,11 +98,39 @@
 
         @guest
     @if (Route::has('login'))
-        <a class="navbar-btn btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
+        <a class="navbar-btn btn btn-primary" href="{{ url('login') }}">{{ __('Login') }}</a>
     @endif
-    @if (Route::has('register'))
+
+
+
+    @php
+      $tenantDomain   = request()->segment(1);
+    @endphp
+      @if ($tenantDomain)
+        @php
+            $tenant = App\Models\Tenant::where('domain', $tenantDomain)->first();
+        @endphp
+          @if ($tenant)
+              @if (Route::has('register'))
+                  <a class="navbar-btn btn btn-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
+              @endif
+          @else
+            @if (Route::has('enrollment.create'))
+                <a class="navbar-btn btn btn-primary" href="{{ route('enrollment.create') }}">Enroll</a>
+            @endif
+          @endif
+      @else
+          @if (Route::has('enrollment.create'))
+            <a class="navbar-btn btn btn-primary" href="{{ route('enrollment.create') }}">Enroll</a>
+          @endif
+      @endif
+
+    {{-- @if (Route::has('enrollment.create'))
+        <a class="navbar-btn btn btn-primary" href="{{ route('enrollment.create') }}">Enroll</a>
+    @endif --}}
+    {{-- @if (Route::has('register'))
         <a class="navbar-btn btn btn-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
-    @endif
+    @endif --}}
 @else
     <ul class="nav navbar-nav navbar-nav-bordered navbar-nav-margin-right">
         <!-- User Dropdown -->

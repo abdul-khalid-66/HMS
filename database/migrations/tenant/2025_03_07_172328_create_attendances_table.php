@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('date');
             $table->enum('status', ['present', 'absent']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

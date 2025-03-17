@@ -9,12 +9,12 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('subjects', function (Blueprint $table) {
-            $table->id();
-            $table->string('name'); // e.g., Maths, Science
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('first_name')->after('name');
+            $table->string('last_name')->after('first_name');
+            $table->softDeletes();
         });
     }
 
@@ -23,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subjects');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };

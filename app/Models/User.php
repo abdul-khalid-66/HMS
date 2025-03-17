@@ -15,7 +15,7 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, HasRoles, Notifiable;
     use SoftDeletes;
-
+    protected $connection = 'mysql';
     /**
      * The attributes that are mass assignable.
      *
@@ -27,7 +27,13 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
+        'tenant_id'
     ];
+
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

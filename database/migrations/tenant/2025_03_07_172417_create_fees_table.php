@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('due_fees', 8, 2);
             $table->date('payment_date');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

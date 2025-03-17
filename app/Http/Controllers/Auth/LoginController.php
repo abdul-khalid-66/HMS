@@ -37,7 +37,7 @@ class LoginController extends BaseController
         } elseif ($user->hasRole('student')) {
             return redirect()->route('student_dashboard');
         } else {
-            dd('testing');
+            return "No role assigned";
         }
 
 
