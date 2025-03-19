@@ -140,6 +140,23 @@
                                             class="mini-sub-pro">Classes Payment</span></a></li>
                             </ul>
                         </li>
+                        @can('edit-student')
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false"><span
+                                    class="educate-icon educate-course icon-wrap"></span> <span
+                                    class="mini-click-non">Setting</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li>
+                                    <a title="All Classes" href="{{ route('all_tenants')}}">
+                                        <span class="mini-sub-pro">
+                                            Tenante  Permissions
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        @endcan
+                        
 
 
                         {{-- 

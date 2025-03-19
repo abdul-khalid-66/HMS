@@ -50,16 +50,17 @@ return Application::configure(basePath: dirname(__DIR__))
                 }
             } else {
 
+                if (Auth::user() && Auth->user()->hasRole('super-admin')) {
+                    $router->middleware('web')
+                        ->prefix('/admin')
+                        ->group(base_path('routes/admin.php'));
+                }
                 Config::set('database.connections.tenant.database', env('DB_DATABASE'));
                 DB::purge('tenant');
                 DB::reconnect('tenant');
                 DB::connection('tenant')->getPdo();
                 $router->middleware('web')
                     ->group(base_path('routes/website.php'));
-
-                $router->middleware('web')
-                    ->prefix('/admin')
-                    ->group(base_path('routes/admin.php'));
             }
         },
         commands: __DIR__ . '/../routes/console.php',

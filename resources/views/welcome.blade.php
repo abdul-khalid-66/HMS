@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <h1>Create New School</h1>
     <form action="{{ route('tenants.store') }}" method="POST">
         @csrf
@@ -16,5 +16,16 @@
         </div>
         <button type="submit" class="btn btn-primary">Create School</button>
     </form>
-</div>
+</div> --}}
+<form action="{{ route('roles.update-permissions', $role->id) }}" method="POST">
+    @csrf
+    @foreach($permissions as $permission)
+        <label>
+            <input type="checkbox" name="permissions[]" value="{{ $permission->name }}"
+                   @if($role->hasPermissionTo($permission->name)) checked @endif>
+            {{ $permission->name }}
+        </label>
+    @endforeach
+    <button type="submit">Update Permissions</button>
+</form>
 @endsection
